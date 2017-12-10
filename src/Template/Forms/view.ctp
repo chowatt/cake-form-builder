@@ -1,11 +1,7 @@
-<?= $this->Form->create(null);?>
-<?php 
-foreach($form->fields as $field){
-    echo $this->Form->input($field->name, $field->getFormOptions());
-}
-?>
-
-<?= $this->Form->button(__("Submit"));?>
-<?= $this->Form->end();?>
+<div class="box box-primary">
+    <div class="box-body">
+    <?php echo $this->FormBuilder->build($form);?>
+</div>
+</div>
 <?php debug($form);?>
 

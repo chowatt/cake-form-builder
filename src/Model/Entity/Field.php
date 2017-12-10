@@ -87,25 +87,5 @@ class Field extends Entity
         return $output;
     }
 
-    public function getFormOptions()
-    {
-        $options = [];
-
-        $options['label'] = $this->description ?? $this->name;
-        $options['options'] = $this->getOptions();
-        $options['required'] = $this->required;
-        
-        if(in_array($this->type, ['text', 'textarea', 'date', 'datetime'])){
-            $options['type'] = $this->type;
-        } else if ($this->type == 'checkbox' && is_array($options)) {
-            $options['type'] = 'select';
-            $options['multiple'] = 'checkbox';
-        } else if ($this->type == 'select') {
-            $options['type'] = 'select';
-        } else if ($this->type == 'radio') {
-            $options['type'] = 'radio';
-        }
-
-        return $options;
-    }
+    
 }
