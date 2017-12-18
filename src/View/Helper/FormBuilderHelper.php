@@ -18,7 +18,28 @@ class FormBuilderHelper extends Helper
                 case "textarea":
                 case "date":
                 case "datetime":
-                    $output .= $this->Form->input($field->name, ['type' => $field->type]);
+                    $output .= $this->Form->input(
+                        $field->name, 
+                        ['type' => $field->type, 'required' => $field->required]);
+                    break;
+                case "radio":
+                    $output .= $this->Form->label($field->name);
+                    $output .= $this->Form->input($field->name, [
+                        'type' => 'radio', 
+                        'options' => $field->getOptions(),
+                        'label' => false,
+                        'radioLabel' => $field->name
+                    ]);
+                    $output .= $this->Form->error($field->name);
+
+                    break;
+                case "checkbox":
+                    $output .= $this->Form->label($field->name);
+                    $output .= $this->Form->select(
+                        $field->name, 
+                        $field->getOptions(),
+                        ['multiple' => 'checkbox'] 
+                    );
                     break;
             }
         }
